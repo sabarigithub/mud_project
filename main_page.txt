@@ -1,0 +1,54 @@
+@page "/A"
+<MudDrawer Elevation="1" Variant="DrawerVariant.Mini" Open="true"  Class="mud-width-250">
+    <MudDrawerHeader>
+        <MudText Typo="Typo.h5" Align="Align.Center">Monitoring Server</MudText>
+    </MudDrawerHeader>
+
+    <MudNavMenu>
+
+        <MudNavLink Href="/Dashboard" Icon="@Icons.Material.Filled.Dashboard"  Match="NavLinkMatch.All">
+            Dashboard
+        </MudNavLink>
+
+        <MudNavGroup Title="Configure" Icon="@Icons.Material.Filled.Settings">
+            <MudNavLink Href="/Add_record_server">Rec Server</MudNavLink>
+            <MudNavLink Href="/Rec_ser_config">NAS</MudNavLink>
+        </MudNavGroup>
+
+        <MudNavLink Href="/Ser-monitor_config" Icon="@Icons.Material.Filled.Visibility">
+            Monitor Streams
+        </MudNavLink>
+
+        <MudNavLink Href="/Multicast" Icon="@Icons.Material.Filled.FiberManualRecord" Color="Color.Error">
+            Recording Status
+        </MudNavLink>
+
+        <MudNavLink Href="#transcode" Icon="@Icons.Material.Filled.Movie">
+            Transcode HUB
+        </MudNavLink>
+
+        <MudNavLink Href="#clipzone" Icon="@Icons.Material.Filled.ContentCut">
+            Clip Zone
+        </MudNavLink>
+
+        <MudNavLink Href="#settings" Icon="@Icons.Material.Filled.SettingsApplications">
+            Settings
+        </MudNavLink>
+
+    </MudNavMenu>
+
+    <MudSpacer />
+    
+    <MudNavMenu>
+        <MudNavLink Href="#logout" Icon="@Icons.Material.Filled.Logout">
+            Logout
+        </MudNavLink>
+    </MudNavMenu>
+</MudDrawer>
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+@page "/Rec_ser_config"
+@using MudBlazor
+
+
+<MudPaper Class="p-4">
+    <MudText Typo="Typo.h5" Class="mb-4">Recording Server Configuration</MudText>
+
+    <MudCard>
+        <MudCardContent>
+            <EditForm Model="@recServerModel" OnValidSubmit="SaveConfiguration">
+                <MudGrid GutterSize="GutterSize.Small">
+                    <MudItem xs="12" md="6">
+                        <MudTextField Label="Server IP" @bind-Value="recServerModel.ServerIp" Required="true" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudNumericField Label="Port" @bind-Value="recServerModel.Port" Required="true" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudSelect T="string" Label="Codec" @bind-Value="recServerModel.Codec" Required="true">
+                            <MudSelectItem T="string"> H.264 </MudSelectItem>
+                           <MudSelectItem T="string"> H.265 </MudSelectItem>
+                        </MudSelect>
+                    </MudItem>
+                    <MudItem xs="12" md="6" Class="mt-4">
+                        <MudCheckBox T="bool" Label="Enable Backup" @bind-Checked="recServerModel.EnableBackup" />
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary" Variant="Variant.Filled">
+                            Save Configuration
+                        </MudButton>
+                    </MudItem>
+                </MudGrid>
+            </EditForm>
+        </MudCardContent>
+    </MudCard>
+</MudPaper>
+
+@code {
+    [Inject] ISnackbar Snackbar { get; set; }
+
+    private void SaveConfiguration()
+    {
+        // Save logic
+        Snackbar.Add("Configuration saved successfully!", Severity.Success);
+    }
+
+    private RecServerModel recServerModel = new()
+    {
+        ServerIp = "192.168.1.100",
+        Port = 554,
+        Codec = "H.264",
+        EnableBackup = true
+    };
+
+
+    public class RecServerModel
+{
+    public string ServerIp { get; set; }
+    public int Port { get; set; }
+    public string Codec { get; set; }
+    public bool EnableBackup { get; set; }
+}
+}

@@ -1,0 +1,126 @@
+@page "/Add_record_server"
+@using MudBlazor
+
+<MudPaper Class="p-4 mt-4">
+    <MudCard>
+        <MudCardHeader Class="bg-primary text-white">
+            <MudText Typo="Typo.h5" Class="text-white">Add Recording Server</MudText>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudForm @ref="form" Model="@serverModel" Validated="OnValidSubmit">
+                <MudGrid>
+                    <MudItem xs="12" md="6">
+                        <MudTextField Label="Server Nickname" @bind-Value="serverModel.Nickname" Required="true" />
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudTextField Label="Host IP Address" @bind-Value="serverModel.IPAddress" Required="true" Pattern="^((\d{1,3}\.){3}\d{1,3})$" />
+                    </MudItem>
+                    <MudItem xs="12" md="4">
+                        <MudNumericField T="int" Label="SSH Port" @bind-Value="serverModel.Port" Min="1" Max="65535" Required="true" />
+                    </MudItem>
+                    <MudItem xs="12" md="4">
+                        <MudTextField Label="SSH Username" @bind-Value="serverModel.Username" Required="true" />
+                    </MudItem>
+                    <MudItem xs="12" md="4">
+                        <MudTextField @bind-Value="serverModel.Password" Label="SSH Password" InputType="InputType.Password">
+                            <AdornmentEnd>
+                                <MudIconButton Icon="@Icons.Material.Filled.Visibility" OnClick="TogglePasswordVisibility" />
+                            </AdornmentEnd>
+                        </MudTextField>
+                    </MudItem>
+                    <MudItem xs="12" md="4">
+                        <MudCheckBox T="bool" @bind-Checked="serverModel.TestConnection" Label="Test connection before saving" />
+                    </MudItem>
+                </MudGrid>
+
+                <MudDivider Class="my-4" />
+                  <div class="d-flex justify-between align-center w-100">
+                <MudButton Color="Color.Primary" FullWidth="false" Size="Size.Small" Style="width: 100px;" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Add" OnClick="OnSubmit">Add Server</MudButton>
+                <MudButton Color="Color.Secondary" FullWidth="false" Size="Size.Small" Style="width: 100px;" Variant="Variant.Outlined" Class="ml-2" OnClick="ClearForm">Clear Form</MudButton>
+                </div>
+            </MudForm>
+        </MudCardContent>
+    </MudCard>
+</MudPaper>
+
+<MudPaper Class="p-4 mt-4">
+    <MudCard>
+        <MudCardHeader Class="bg-secondary text-white">
+            <MudText Typo="Typo.h6" Class="text-white">Configured Servers</MudText>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudTable Items="@servers" Hover="true" Bordered="true" Striped="true">
+                <HeaderContent>
+                    <MudTh Style="background-color: #1976d2; color: white;">Nickname</MudTh>
+                    <MudTh Style="background-color: #1976d2; color: white;">Host IP</MudTh>
+                    <MudTh Style="background-color: #1976d2; color: white;">SSH Port</MudTh>
+                    <MudTh Style="background-color: #1976d2; color: white;">Username</MudTh>
+                    <MudTh Style="background-color: #1976d2; color: white;">Status</MudTh>
+                    <MudTh Style="background-color: #1976d2; color: white;">Actions</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd>@context.Nickname</MudTd>
+                    <MudTd>@context.IPAddress</MudTd>
+                    <MudTd>@context.Port</MudTd>
+                    <MudTd>@context.Username</MudTd>
+                    <MudTd>
+                        <MudChip T="bool" Color="@GetChipColor(context.IsOnline)">
+                        @(context.IsOnline ? "Online" : "Offline")
+                        </MudChip>
+                    </MudTd>
+                    <MudTd>
+                        <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="@(() => RemoveServer(context))" />
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudCardContent>
+    </MudCard>
+</MudPaper>
+
+@code {
+    private MudForm form;
+    private ServerModel serverModel = new();
+    private List<ServerModel> servers = new();
+
+    private InputType passwordInputType = InputType.Password;
+
+    private void TogglePasswordVisibility()
+    {
+        passwordInputType = passwordInputType == InputType.Password ? InputType.Text : InputType.Password;
+    }
+
+    private async Task OnSubmit()
+    {
+        await form.Validate();
+        if (form.IsValid)
+        {
+            servers.Add(serverModel);
+            serverModel = new();
+        }
+    }
+     private Color GetChipColor(bool isOnline)
+    {
+        return isOnline ? Color.Success : Color.Error;
+    }
+
+    private void ClearForm()
+    {
+        serverModel = new();
+    }
+
+    private void RemoveServer(ServerModel server)
+    {
+        servers.Remove(server);
+    }
+
+    public class ServerModel
+    {
+        public string Nickname { get; set; }
+        public string IPAddress { get; set; }
+        public int Port { get; set; } = 22;
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public bool TestConnection { get; set; }
+        public bool IsOnline { get; set; } = true; // For example purposes
+    }
+}

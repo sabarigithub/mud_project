@@ -1,0 +1,95 @@
+@page "/Dashboard"
+<section id="dashboard-overview">
+    <MudText Typo="Typo.h4" Class="mb-4">Dashboard Overview</MudText>
+
+    <MudGrid Gutter="4">
+
+        <!-- Server Status Card -->
+        <MudItem xs="12" md="4" lg="4">
+            <MudCard Class="status-card">
+                <MudCardContent>
+                    <MudText Typo="Typo.h6">Server Status</MudText>
+
+                    <MudProgressLinear Color="Color.Success"  Size="Size.Large" Value="85" Class="mb-3">85% Healthy</MudProgressLinear>
+
+                    <MudList T="object" Dense="true">
+                       <MudListItem T="object">
+                         <div class="d-flex justify-between align-center w-100">
+                                <MudText>Active Servers</MudText>
+                                <MudSpacer />
+                                <MudChip T="int" Color="Color.Primary">5</MudChip>
+                        </div>
+                        </MudListItem>
+
+                        <MudListItem T="object">
+                            <div class="d-flex justify-between align-center w-100">
+                                <MudText>Active Servers</MudText>
+                                <MudSpacer />
+                                <MudChip T="int" Color="Color.Success">3</MudChip>
+                            </div>
+                        </MudListItem>
+                        <MudListItem T="object"> 
+                             <div class="d-flex justify-between align-center w-100">
+                                <MudText>Active Servers</MudText>
+                                <MudSpacer />
+                                <MudChip T="int" Color="Color.Error">0</MudChip>
+                            </div>
+                        </MudListItem>
+                    </MudList>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+        <!-- Active Recordings -->
+        <MudItem xs="12" md="4" lg="4">
+            <MudCard Class="status-card">
+                <MudCardContent>
+                    <MudText Typo="Typo.h6">Active Recordings</MudText>
+
+                    <MudList T="object" Dense="true">
+                        <MudListItem T="object"> 
+                            <div class="d-flex justify-between align-center w-100">
+                            <MudText>Stream 1 - Camera A</MudText>
+                            <MudSpacer />
+                            <MudChip T="int" Color="Color.Success">Recording</MudChip>
+                            </div>
+                        </MudListItem>
+                        <MudListItem T="object">
+                            <div class="d-flex justify-between align-center w-100">
+                            <MudText>Stream 2 - Camera B</MudText>
+                            <MudSpacer />
+                                <MudChip T="int" Color="Color.Success">Recording</MudChip>
+                            </div>
+                        </MudListItem>
+                        <MudListItem T="object">
+                             <div class="d-flex justify-between align-center w-100">
+                            <MudText>Backup Stream</MudText>
+                            <MudSpacer />
+                            <MudChip T="int" Color="Color.Warning">Paused</MudChip>
+                             </div>
+                        </MudListItem>
+                    </MudList>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+        <!-- System Health -->
+        <MudItem xs="12" md="4" lg="4">
+            <MudCard Class="status-card">
+                <MudCardContent>
+                    <MudText Typo="Typo.h6">System Health</MudText>
+
+                    <MudText Class="mb-1 mt-3">CPU Usage</MudText>
+                    <MudProgressLinear Color="Color.Info" Size="Size.Large" Value="65">65%</MudProgressLinear>
+
+                    <MudText Class="mb-1 mt-3">Memory Usage</MudText>
+                    <MudProgressLinear Color="Color.Primary" Size="Size.Large" Value="45">45%</MudProgressLinear>
+
+                    <MudText Class="mb-1 mt-3">Storage</MudText>
+                    <MudProgressLinear Color="Color.Warning" Size="Size.Large" Value="78">78%</MudProgressLinear>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+    </MudGrid>
+</section>

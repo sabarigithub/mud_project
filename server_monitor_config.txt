@@ -1,0 +1,96 @@
+@page "/Ser-monitor_config"
+@using MudBlazor
+
+<MudTabs>
+    <MudTabPanel Text="System Monitoring">
+        <MudText Typo="Typo.h4" Class="mb-4">Server Monitoring Dashboard</MudText>
+
+        <MudPaper Class="pa-4 mb-4 bg-primary text-white">
+            <MudText Typo="Typo.h6">System Information</MudText>
+       
+
+        <MudGrid Gutter="GutterSize.Small">
+            <MudItem xs="12" sm="6" md="3">
+                <MudPaper Class="pa-4">
+                    <MudText>Hostname</MudText>
+                    <MudText Color="Color.Primary">Loading...</MudText>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="6" md="3">
+                <MudPaper Class="pa-4">
+                    <MudText>Host IP</MudText>
+                    <MudText Color="Color.Primary">Loading...</MudText>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="6" md="3">
+                <MudPaper Class="pa-4">
+                    <MudText>Uptime</MudText>
+                    <MudText Color="Color.Primary">Loading...</MudText>
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="6" md="3">
+                <MudPaper Class="pa-4">
+                    <MudText>CPU Cores</MudText>
+                    <MudText Color="Color.Primary">Loading...</MudText>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+         </MudPaper>
+
+        <MudGrid Class="mt-4" Gutter="GutterSize.Small">
+            <MudItem xs="12" md="5">
+                <MudPaper Class="pa-4">
+                    <MudText Typo="Typo.h6" Class="mb-2" Color="Color.Info">CPU Utilization</MudText>
+                    <MudProgressLinear Color="Color.Info" Value="0" Animated Striped />
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" md="7">
+                <MudPaper Class="pa-4">
+                    <MudText Typo="Typo.h6" Class="mb-2" Color="Color.Warning">Memory Usage</MudText>
+                    <MudGrid>
+                        <MudItem xs="12" sm="6">
+                            <MudText>Used Memory</MudText>
+                            <MudProgressLinear Color="Color.Error" Value="0" />
+                        </MudItem>
+                        <MudItem xs="12" sm="6">
+                            <MudText>Available Memory</MudText>
+                            <MudProgressLinear Color="Color.Success" Value="0" />
+                        </MudItem>
+                    </MudGrid>
+                </MudPaper>
+            </MudItem>
+        </MudGrid>
+
+        <MudPaper Class="pa-4 mt-4">
+            <MudText Typo="Typo.h6" Color="Color.Success">Disk Usage</MudText>
+            <MudText>Total Space: 0.00 GB</MudText>
+            <MudProgressLinear Value="0" />
+            <MudGrid Class="mt-2">
+                <MudItem xs="12" sm="6">
+                    <MudPaper Class="pa-2">
+                        <MudText>Used</MudText>
+                        <MudText Color="Color.Error">0.00 GB</MudText>
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="12" sm="6">
+                    <MudPaper Class="pa-2">
+                        <MudText>Free</MudText>
+                        <MudText Color="Color.Success">0.00 GB</MudText>
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
+        </MudPaper>
+
+        <MudPaper Class="pa-4 mt-4">
+            <MudText Typo="Typo.h6" Color="Color.Secondary">Network Interfaces</MudText>
+            <MudText>Loading...</MudText>
+        </MudPaper>
+    </MudTabPanel>
+
+    <MudTabPanel Text="Multicast IP and Port">
+        <MudPaper Class="pa-4 mt-4">
+            <MudText Typo="Typo.h6" Color="Color.Secondary">Network Interfaces</MudText>
+            <MudText>Loading...</MudText>
+        </MudPaper>
+    </MudTabPanel>
+</MudTabs>
